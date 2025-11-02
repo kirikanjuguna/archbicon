@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import PageWrapper from "@/components/PageWrapper";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -30,7 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans bg-background text-foreground`}
       >
         <Navbar />
-        <main className="pt-20">{children}</main>
+        <PageWrapper>{children}</PageWrapper>
+        <footer className="text-center py-6 text-sm text-gray-500 border-t border-gray-200">
+          © {new Date().getFullYear()} Archbicon. All rights reserved.
+        </footer>
       </body>
     </html>
   );
