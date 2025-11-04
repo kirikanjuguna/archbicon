@@ -96,6 +96,66 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+            {/* Projects / Portfolio Section */}
+      <section id="projects" className="py-24 px-6 bg-sky-50">
+        <div className="max-w-6xl mx-auto text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-sky-700 mb-4"
+          >
+            Our Recent Projects
+          </motion.h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Take a look at some of the spaces we’ve brought to life — combining
+            architectural excellence and construction precision.
+          </p>
+        </div>
+
+        {/* Project Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Residential Villas",
+              img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=60",
+              desc: "Elegant, modern villas designed for luxury and comfort.",
+            },
+            {
+              title: "Corporate Office",
+              img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=60",
+              desc: "Innovative workspace promoting collaboration and focus.",
+            },
+            {
+              title: "Urban Apartments",
+              img: "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=60",
+              desc: "Sustainable high-rise apartments redefining city living.",
+            },
+          ].map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="relative group overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300"
+            >
+              <img
+                src={project.img}
+                alt={project.title}
+                className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-center items-center text-white p-6">
+                <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                <p className="text-sm text-gray-200">{project.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
     </main>
   );
 }
