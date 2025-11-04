@@ -1,21 +1,101 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { HardHat, Building2, Lightbulb, Ruler } from "lucide-react";
 
 export default function HomePage() {
+  const services = [
+    {
+      title: "Architectural Design",
+      desc: "Modern, functional, and sustainable design solutions tailored to your vision.",
+      icon: Building2,
+    },
+    {
+      title: "Construction Management",
+      desc: "From concept to completion, we ensure quality and precision every step of the way.",
+      icon: HardHat,
+    },
+    {
+      title: "Consultancy",
+      desc: "Professional advice to help you plan and execute successful building projects.",
+      icon: Lightbulb,
+    },
+    {
+      title: "Structural Engineering",
+      desc: "Strong, safe, and efficient structures engineered to perfection.",
+      icon: Ruler,
+    },
+  ];
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center gap-6 p-6 bg-background text-foreground">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Welcome to Archbicon</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Input placeholder="Type something..." />
-          <Button>Click Me</Button>
-        </CardContent>
-      </Card>
+    <main className="bg-gradient-to-b from-sky-50 to-white text-gray-800 min-h-screen">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6 text-center flex flex-col items-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl font-extrabold text-sky-700 mb-4"
+        >
+          Building Tomorrow, Today.
+        </motion.h1>
+
+        <p className="max-w-2xl text-lg text-gray-600 mb-8">
+          Archbicon delivers innovative architecture and construction
+          solutions—where design meets precision and creativity.
+        </p>
+
+        <Button className="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 text-lg rounded-full">
+          Learn More
+        </Button>
+      </section>
+
+      {/* About / Services Section */}
+      <section id="services" className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-sky-700 mb-4"
+          >
+            Our Core Services
+          </motion.h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            We provide end-to-end architecture and construction services that
+            blend creativity, functionality, and sustainability.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Card className="hover:shadow-lg transition-shadow duration-300 border-sky-100 rounded-2xl">
+                <CardContent className="p-6 flex flex-col items-center text-center">
+                  <service.icon className="w-12 h-12 text-sky-600 mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{service.desc}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

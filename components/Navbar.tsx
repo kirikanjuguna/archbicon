@@ -1,59 +1,51 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm"
-          : "bg-transparent backdrop-blur-0"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+    <nav className="fixed top-0 left-0 w-full bg-white/70 backdrop-blur-md shadow-sm z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-2xl font-bold tracking-tight text-sky-600"
-        >
+        <Link href="/" className="text-2xl font-bold text-sky-600">
           Archbicon
         </Link>
 
-        {/* Nav Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-          {["Home", "Projects", "About", "Contact"].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className="relative group"
-            >
-              <span>{item}</span>
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-sky-500 transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8 text-gray-700 font-medium">
+          <Link href="#about" className="hover:text-sky-600 transition">
+            About
+          </Link>
+          <Link href="#services" className="hover:text-sky-600 transition">
+            Services
+          </Link>
+          <Link href="#projects" className="hover:text-sky-600 transition">
+            Projects
+          </Link>
+          <Link href="#contact" className="hover:text-sky-600 transition">
+            Contact
+          </Link>
         </div>
 
-        {/* Mobile Menu Button (for later) */}
+        {/* Mobile Menu */}
         <div className="md:hidden">
-          <button className="text-gray-700 hover:text-sky-500 transition">
-            ☰
-          </button>
+          <Sheet>
+            <SheetTrigger>
+              <Menu className="w-6 h-6 text-sky-600" />
+            </SheetTrigger>
+            <SheetContent side="right" className="p-6">
+              <div className="flex flex-col space-y-6 text-gray-800 text-lg font-medium">
+                <Link href="#about">About</Link>
+                <Link href="#services">Services</Link>
+                <Link href="#projects">Projects</Link>
+                <Link href="#contact">Contact</Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
