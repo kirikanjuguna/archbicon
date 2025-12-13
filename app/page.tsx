@@ -31,7 +31,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="bg-gradient-to-b from-sky-50 to-white text-gray-800 min-h-screen">
+    <main className="bg-linear-to-b from-sky-50 to-white text-gray-800 min-h-screen">
       <Navbar />
 
       {/* Hero Section */}
