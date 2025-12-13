@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 const navLinks = [
   { name: "About", href: "/about" },
@@ -33,9 +33,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`transition-colors hover:text-sky-600 ${
-                pathname === link.href
-                  ? "text-sky-600 font-semibold"
-                  : ""
+                pathname === link.href ? "text-sky-600 font-semibold" : ""
               }`}
             >
               {link.name}
@@ -51,6 +49,9 @@ export default function Navbar() {
             </SheetTrigger>
 
             <SheetContent side="right" className="pt-12">
+              {/* Visually hidden title for accessibility */}
+              <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
+
               <div className="flex flex-col space-y-6 text-lg font-medium">
                 {navLinks.map((link) => (
                   <Link
