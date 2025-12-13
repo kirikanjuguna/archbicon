@@ -130,9 +130,11 @@ export default function HomePage() {
             },
             {
               title: "Urban Apartments",
-              img: "https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=800&q=60",
+              img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=60",
               desc: "Sustainable high-rise apartments redefining city living.",
             },
+
+
           ].map((project, index) => (
             <motion.div
               key={index}
@@ -155,6 +157,57 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+            {/* Why Choose Us */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl font-bold text-sky-700 mb-4"
+          >
+            Why Choose Archbicon
+          </motion.h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            We combine design excellence, engineering expertise, and a deep
+            understanding of modern construction needs.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Design Excellence",
+              desc: "Innovative architectural solutions that balance beauty and function.",
+            },
+            {
+              title: "End-to-End Delivery",
+              desc: "From concept to construction, we manage every stage seamlessly.",
+            },
+            {
+              title: "Sustainable Approach",
+              desc: "Eco-conscious designs built for longevity and efficiency.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="p-8 rounded-2xl border border-sky-100 hover:shadow-lg transition"
+            >
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {item.title}
+              </h3>
+              <p className="text-gray-600 text-sm">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
 
     </main>
   );
