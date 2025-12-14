@@ -2,8 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Menu, X } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 const navLinks = [
   { name: "About", href: "/about" },
@@ -48,18 +54,29 @@ export default function Navbar() {
               <Menu className="w-6 h-6 text-sky-600" />
             </SheetTrigger>
 
-            <SheetContent side="right" className="pt-12">
+            <SheetContent
+              side="right"
+              className="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm p-8 flex flex-col items-center justify-center"
+            >
               {/* Visually hidden title for accessibility */}
               <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
 
-              <div className="flex flex-col space-y-6 text-lg font-medium">
+              {/* Close Button */}
+              <div className="absolute top-6 right-6">
+                <SheetClose>
+                  <X className="w-6 h-6 text-gray-700 hover:text-sky-600" />
+                </SheetClose>
+              </div>
+
+              {/* Menu Links */}
+              <div className="flex flex-col space-y-8 text-xl font-medium">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     className={`transition-colors hover:text-sky-600 ${
                       pathname === link.href
-                        ? "text-sky-600 font-semibold"
+                        ? "text-sky-600 font-bold"
                         : "text-gray-800"
                     }`}
                   >
