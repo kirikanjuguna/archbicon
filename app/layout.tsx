@@ -28,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans bg-background text-foreground`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-background text-foreground`}
+      >
         <Navbar />
         <PageWrapper>{children}</PageWrapper>
         <Footer />
